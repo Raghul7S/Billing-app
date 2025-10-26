@@ -10,8 +10,6 @@ import "./index.css";
 function App() {
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log("customers", customers);
-  console.log("products", products);
 
   return (
     <Router>

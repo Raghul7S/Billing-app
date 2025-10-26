@@ -57,6 +57,18 @@ export default function AddProduct({ products, setProducts }) {
               </button>
             </div>
           </form>
+          {products.length > 0 && (
+            <>
+              <h3>Product list</h3>
+              <ul>
+                {products.map((item, index) => (
+                  <li key={index}>
+                    {item.product} - {item.price}%
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </>
     </div>

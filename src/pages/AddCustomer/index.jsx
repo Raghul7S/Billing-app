@@ -57,6 +57,18 @@ export default function AddCustomer({ customers, setCustomers }) {
             </button>
           </div>
         </form>
+        {customers.length > 0 && (
+          <>
+            <h3>Customer list</h3>
+            <ul>
+              {customers.map((customer, index) => (
+                <li key={index}>
+                  {customer.name} - {customer.discount}%
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
