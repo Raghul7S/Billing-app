@@ -1,8 +1,23 @@
+import { useState } from "react";
 import { FaBoxes } from "react-icons/fa";
 
 import "../../pages/styles.css";
 
-export default function AddProduct() {
+export default function AddProduct({ products, setProducts }) {
+  const [product, setProduct] = useState("");
+  const [price, setPrice] = useState("");
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    if (product && price) {
+      setProducts([...products, { product, price }]);
+      setProduct("");
+      setPrice("");
+    } else {
+      alert("Enter all fields");
+    }
+  };
+
   return (
     <div className="main">
       <>
@@ -17,19 +32,27 @@ export default function AddProduct() {
             <div className="form-row">
               <div className="form-group">
                 <label>Product*</label>
-                <input type="text" placeholder="Product" />
+                <input
+                  type="text"
+                  value={product}
+                  placeholder="Product Name"
+                  onChange={(e) => setProduct(e.target.value)}
+                />
               </div>
               <div className="form-group">
                 <label>Price*</label>
-                <input type="text" placeholder="Price" />
+                <input
+                  type="number"
+                  value={price}
+                  min={0}
+                  placeholder="Price"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
               </div>
             </div>
 
             <div className="form-actions">
-              <button type="button" className="cancel-btn">
-                Cancel
-              </button>
-              <button type="submit" className="confirm-btn">
+              <button type="submit" className="confirm-btn" onClick={handleAdd}>
                 Confirm
               </button>
             </div>

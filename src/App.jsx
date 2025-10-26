@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import SideBar from "./components/Sidebar";
@@ -7,15 +8,36 @@ import Invoice from "./pages/Invoice";
 import "./index.css";
 
 function App() {
+  const [customers, setCustomers] = useState([]);
+  const [products, setProducts] = useState([]);
+  console.log("customers", customers);
+  console.log("products", products);
+
   return (
     <Router>
       <div className="container">
         <SideBar />
         <div className="content">
           <Routes>
-            <Route path="/" element={<AddProduct />} />
-            <Route path="/customers" element={<AddCustomer />} />
-            <Route path="/invoice" element={<Invoice />} />
+            <Route
+              path="/"
+              element={
+                <AddProduct products={products} setProducts={setProducts} />
+              }
+            />
+            <Route
+              path="/customers"
+              element={
+                <AddCustomer
+                  customers={customers}
+                  setCustomers={setCustomers}
+                />
+              }
+            />
+            <Route
+              path="/invoice"
+              element={<Invoice customers={customers} products={products} />}
+            />
           </Routes>
         </div>
       </div>
